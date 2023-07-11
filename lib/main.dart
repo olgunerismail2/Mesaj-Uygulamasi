@@ -39,9 +39,9 @@ class _AnaEkranState extends State<AnaEkran> {
   TextEditingController t1 = TextEditingController();
 
   List mesajListesi = [];
-  mesajlariEkle() {
+  mesajlariEkle(String metin) {
     setState(() {
-      mesajListesi.add(t1.text);
+      mesajListesi.insert(0, metin);
       t1.clear();
     });
   }
@@ -49,21 +49,30 @@ class _AnaEkranState extends State<AnaEkran> {
   @override
   Widget build(BuildContext context) {
     return Container(
+      margin: EdgeInsets.all(40),
       child: Column(
         children: <Widget>[
           Flexible(
             child: ListView.builder(
+              reverse: true,
               itemCount: mesajListesi.length,
               itemBuilder: (context, int indeksNumarasi) =>
                   Text(mesajListesi[indeksNumarasi]),
             ),
           ),
-          TextField(
-            controller: t1,
-          ),
-          ElevatedButton(
-            onPressed: mesajlariEkle,
-            child: Text("Gönder"),
+          Row(
+            children: <Widget>[
+              Flexible(
+                child: TextField(
+                  onSubmitted: mesajlariEkle,
+                  controller: t1,
+                ),
+              ),
+              ElevatedButton(
+                onPressed: mesajlariEkle(t1.text),
+                child: Text("Gönder"),
+              ),
+            ],
           ),
         ],
       ),
