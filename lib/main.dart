@@ -42,6 +42,7 @@ class _AnaEkranState extends State<AnaEkran> {
   mesajlariEkle() {
     setState(() {
       mesajListesi.add(t1.text);
+      t1.clear();
     });
   }
 
@@ -50,6 +51,13 @@ class _AnaEkranState extends State<AnaEkran> {
     return Container(
       child: Column(
         children: <Widget>[
+          Flexible(
+            child: ListView.builder(
+              itemCount: mesajListesi.length,
+              itemBuilder: (context, int indeksNumarasi) =>
+                  Text(mesajListesi[indeksNumarasi]),
+            ),
+          ),
           TextField(
             controller: t1,
           ),
