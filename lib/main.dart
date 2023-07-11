@@ -35,6 +35,13 @@ class AnaEkran extends StatefulWidget {
 class _AnaEkranState extends State<AnaEkran> {
   @override
   Widget build(BuildContext context) {
-    return const Placeholder();
+    return Container(
+      child: Column(children:<Widget> [
+        TextField(),
+        ElevatedButton(onPressed: null, child: null),
+      ],
+      ),
+
+    );
   }
 }
